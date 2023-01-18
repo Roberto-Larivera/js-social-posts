@@ -1,22 +1,3 @@
-console.log('int ok');
-/*
-Milestone 1 - Creiamo il nostro array di oggetti che rappresentano ciascun post.
-Ogni post dovrà avere le informazioni necessarie per stampare la relativa card:
-- id del post, numero progressivo da 1 a n
-- nome autore,
-- foto autore,
-- data in formato americano (mm-gg-yyyy),
-- testo del post,
-- immagine (non tutti i post devono avere una immagine),
-- numero di likes.
-Non è necessario creare date casuali
-Per le immagini va bene utilizzare qualsiasi servizio di placeholder ad es. Unsplash (https://unsplash.it/300/300?image=<id>)
-
-Milestone 2 - Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed.
-
-Milestone 3 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
-Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
-*/
 const posts = [
     {
         "id": 1,
@@ -111,7 +92,7 @@ posts.forEach((item,i,arr) =>{
     const likesCounter = document.createElement('div');
     likesCounter.className +=('likes__counter');
     likesCounter.innerHTML = (`Piace a <b id="like-counter-${item['id']}" class="js-likes-counter">${item['likes']}</b> persone`); //like-counter-${i} //80
-    console.log(item['likes'])
+    //console.log(item['likes'])
     likeButton.addEventListener('click',
         () => {
             const jsLikesCounter = document.getElementById(`like-counter-${item['id']}`);
@@ -119,14 +100,14 @@ posts.forEach((item,i,arr) =>{
             if(likeButton.classList.contains('like-button--liked')){
                 likeButton.classList.remove('like-button--liked');
                 item['likes']--;
-                console.log(item['likes']);
+                //console.log(item['likes']);
                 jsLikesCounter.innerHTML = (item['likes']);
 
             }
             else{
                 likeButton.classList.add('like-button--liked');
                 item['likes']++;
-                console.log(item['likes'])
+                //console.log(item['likes'])
                 jsLikesCounter.innerHTML = (item['likes']);
             }
         }
@@ -144,33 +125,6 @@ posts.forEach((item,i,arr) =>{
     postsList.append(newPost);
     
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-Milestone 3 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
-Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
-*/
-
-
-//function 
-// const postId = document.querySelector("[data-postid='1']"); //.dataset.postid
-// console.log(postId);  // output: "1"
-// postId.addEventListener('click'
-//     ()=>{
-//         if(likeButton.)
-// })
 
 
 
@@ -209,7 +163,6 @@ function createdElementImg (elementType,contenentSrc,elementClass,contenentSrc2)
         let initials = firstInitial + lastInitial;
         //console.log(initials); 
         newElement.innerText = initials;
-        // newElement.style.backgroundColor= 'red';
         return newElement;
     }
     else{
