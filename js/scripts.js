@@ -80,8 +80,8 @@ const postsList = document.querySelector('.posts-list');
 posts.forEach((item,i,arr) =>{
 
     const postMetaAuthor = createdElementText ('div','post-meta__author',item['author']['name']);
-
-    const postMetaTime = createdElementText ('div','post-meta__time',item['created']);
+    
+    const postMetaTime = createdElementText ('div','post-meta__time',transformDate (item['created']));
 
     const postMetaData = createdElementContainer ('div','post-meta__data',postMetaAuthor,postMetaTime);
 
@@ -174,7 +174,17 @@ Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 
 
 
-
+function transformDate (dateId){
+    const originalDate = dateId;
+    const date = new Date(originalDate);
+    const formattedDate = date.toLocaleDateString("it-IT", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+    });
+    //console.log(formattedDate);
+    return formattedDate
+}
 
 
 
