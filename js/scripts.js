@@ -18,28 +18,54 @@ Milestone 3 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del
 Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 */
 const newPostMetaAuthor = createdElementText ('div','post-meta_author','Phil Mangione');
-console.log('newPostMetaAuthor',newPostMetaAuthor, typeof newPostMetaAuthor);
+//console.log('newPostMetaAuthor',newPostMetaAuthor, typeof newPostMetaAuthor);
 
 const newPostMetaTime = createdElementText ('div','post-time','2021-06-25');
-console.log('newPostMetaTime',newPostMetaTime, typeof newPostMetaTime);
+//console.log('newPostMetaTime',newPostMetaTime, typeof newPostMetaTime);
 
-const newPostMetaData = createdElementContainer ('div','post-meta__data',newPostMetaAuthor,newPostMetaTime)
-console.log('newPostMetaData',newPostMetaData, typeof newPostMetaData);
+const newPostMetaData = createdElementContainer ('div','post-meta__data',newPostMetaAuthor,newPostMetaTime);
+//console.log('newPostMetaData',newPostMetaData, typeof newPostMetaData);
 
-const provaA = document.querySelector(".post-meta");
-provaA.append(newPostMetaData);
+const profPic = createdElementImg ('img','https://unsplash.it/600/300?image=171');
+//console.log('profPic',profPic, typeof profPic);
 
+const postMetaIcon = createdElementContainer ('div','post-meta__icon',profPic);
+//console.log('postMetaIcon',postMetaIcon, typeof postMetaIcon);
+
+const postMeta = createdElementContainer ('div','post-meta',postMetaIcon,newPostMetaData)
+console.log('postMeta',postMeta, typeof postMeta);
+
+//PROVA
+//const provaA = document.querySelector(".post-meta");
+//provaA.append(newPostMetaData);
+//provaA.append(postMeta);
+
+// FUNZIONE PER ELEMENTI TEXT
 function createdElementText (elementType,elementClass,contenentText){
     const newElement = document.createElement(elementType);
     newElement.classList.add(elementClass);
     newElement.innerText =(contenentText);
-    console.log(newElement);
+    //console.log(newElement);
     return newElement;
 }
+
+// FUNZIONE PER ELEMENTI IMG
+function createdElementImg (elementType,contenentSrc){
+    const newElement = document.createElement(elementType);
+    newElement.setAttribute('src',contenentSrc)
+    // newElement.classList.add(elementClass);
+    // newElement.innerText =(contenentText);
+    //console.log(newElement);
+    return newElement;
+}
+
+// FUNZIONE PER ELEMENTI CONTENITORI
 function createdElementContainer (elementType,elementClass,...contenentElement){
     const newElement = document.createElement(elementType);
     newElement.classList.add(elementClass);
-    newElement.innerText +=(contenentElement);
-    console.log(newElement);
+    contenentElement.forEach((item)=>{
+        newElement.append(item);
+        //console.log(newElement);
+    })
     return newElement;
 }
