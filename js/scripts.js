@@ -80,65 +80,72 @@ const postsList = document.querySelector('.posts-list');
 posts.forEach((item,i,arr) =>{
 
     const postMetaAuthor = createdElementText ('div','post-meta__author',item['author']['name']);
-    //console.log('postMetaAuthor',postMetaAuthor, typeof postMetaAuthor);
 
     const postMetaTime = createdElementText ('div','post-meta__time',item['created']);
-    //console.log('postMetaTime',postMetaTime, typeof postMetaTime);
 
     const postMetaData = createdElementContainer ('div','post-meta__data',postMetaAuthor,postMetaTime);
-    //console.log('postMetaData',postMetaData, typeof postMetaData);
 
     const profPic = createdElementImg ('img',item['author']['image'],'profile-pic',item['author']['name']);
-    //console.log('profPic',profPic, typeof profPic);
 
     const postMetaIcon = createdElementContainer ('div','post-meta__icon',profPic);
-    //console.log('postMetaIcon',postMetaIcon, typeof postMetaIcon);
 
     const postMeta = createdElementContainer ('div','post-meta',postMetaIcon,postMetaData);
-    //console.log('postMeta',postMeta, typeof postMeta);
 
     const postHeader = createdElementContainer ('div','post__header',postMeta);
-    //console.log('postHeader',postHeader, typeof postHeader);
 
     const postText = createdElementText ('div','post__text',item['content']);
-    //console.log('postText',postText, typeof postText);
 
     const imagePic = createdElementImg ('img',item['media'],'','');
-    //console.log('imagePic',imagePic, typeof imagePic);
 
     const postImage = createdElementContainer ('div','post__image',imagePic);
-    //console.log('postImage',postImage, typeof postImage);
 
     const likeButtonIcon = createdElementText ('i','like-button__icon fas fa-thumbs-up','');
     likeButtonIcon.setAttribute('aria-hidden','true')
-    //console.log('likeButtonIcon',likeButtonIcon, typeof likeButtonIcon);
 
     const likeButttonLabel = createdElementText ('span','like-button__label','Mi Piace');
-    //console.log('likeButttonLabel',likeButttonLabel, typeof likeButttonLabel);
 
     const likeButton = createdElementContainer ('a','like-button  js-like-button',likeButtonIcon,likeButttonLabel);
-    likeButton.setAttribute('href','#');
+    likeButton.setAttribute('href','##');
     likeButton.setAttribute('data-postid',item['id']);
-    //console.log('likeButton',likeButton, typeof likeButton);
 
-    const likesCta = createdElementContainer ('div','likes__cta',likeButton);
-    //console.log('likesCta',likesCta, typeof likesCta);
+    //spostamento 
+    
 
     const likesCounter = document.createElement('div');
     likesCounter.className +=('likes__counter');
     likesCounter.innerHTML = (`Piace a <b id="like-counter-${item['id']}" class="js-likes-counter">${item['likes']}</b> persone`); //like-counter-${i} //80
+    console.log(item['likes'])
+    likeButton.addEventListener('click',
+        () => {
+            const jsLikesCounter = document.getElementById(`like-counter-${item['id']}`);
+
+            if(likeButton.classList.contains('like-button--liked')){
+                likeButton.classList.remove('like-button--liked');
+                item['likes']--;
+                console.log(item['likes']);
+                jsLikesCounter.innerHTML = (item['likes']);
+
+            }
+            else{
+                likeButton.classList.add('like-button--liked');
+                item['likes']++;
+                console.log(item['likes'])
+                jsLikesCounter.innerHTML = (item['likes']);
+            }
+        }
+    )
+
+
+    const likesCta = createdElementContainer ('div','likes__cta',likeButton);
 
     const likes = createdElementContainer ('div','likes js-likes',likesCta,likesCounter);
-    //console.log('likes',likes, typeof likes);
 
     const postFooter = createdElementContainer ('div','post__footer',likes);
-    //console.log('postFooter',postFooter, typeof postFooter);
 
     const newPost = createdElementContainer ('div','post',postHeader,postText,postImage,postFooter);
-    //console.log('postFooter',postFooter, typeof postFooter);
 
     postsList.append(newPost);
-    //console.log('postsList',postsList, typeof postsList);
+    
 })
 
 
@@ -154,11 +161,19 @@ posts.forEach((item,i,arr) =>{
 
 
 
+/*
+Milestone 3 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
+Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+*/
 
 
-
-
-
+//function 
+// const postId = document.querySelector("[data-postid='1']"); //.dataset.postid
+// console.log(postId);  // output: "1"
+// postId.addEventListener('click'
+//     ()=>{
+//         if(likeButton.)
+// })
 
 
 
