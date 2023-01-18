@@ -108,9 +108,6 @@ posts.forEach((item,i,arr) =>{
     likeButton.setAttribute('href','##');
     likeButton.setAttribute('data-postid',item['id']);
 
-    //spostamento 
-    
-
     const likesCounter = document.createElement('div');
     likesCounter.className +=('likes__counter');
     likesCounter.innerHTML = (`Piace a <b id="like-counter-${item['id']}" class="js-likes-counter">${item['likes']}</b> persone`); //like-counter-${i} //80
@@ -192,13 +189,30 @@ function createdElementText (elementType,elementClass,contenentText){
 
 // FUNZIONE PER ELEMENTI IMG
 function createdElementImg (elementType,contenentSrc,elementClass,contenentSrc2){
-    const newElement = document.createElement(elementType);
-    newElement.setAttribute('src',contenentSrc);
-    newElement.setAttribute('alt',contenentSrc2);
-    newElement.className +=(elementClass);
-    // newElement.innerText =(contenentText);
-    //console.log(newElement);
-    return newElement;
+    if(contenentSrc == null){
+        const newElement = document.createElement('span');
+        newElement.className +=('profile-pic-default');
+        const fullName = (contenentSrc2);
+        const nameArray = fullName.split(" ");
+        let firstInitial = nameArray[0][0];
+        let lastInitial = nameArray[1][0];
+        let initials = firstInitial + lastInitial;
+        //console.log(initials); 
+        newElement.innerText = initials;
+        // newElement.style.backgroundColor= 'red';
+        return newElement;
+    }
+    else{
+        const newElement = document.createElement(elementType);
+        newElement.setAttribute('src',contenentSrc);
+        newElement.setAttribute('alt',contenentSrc2);
+        newElement.className +=(elementClass);
+        // newElement.innerText =(contenentText);
+        //console.log(newElement);
+        
+        return newElement;
+    }
+    
 }
 
 // FUNZIONE PER ELEMENTI CONTENITORI
